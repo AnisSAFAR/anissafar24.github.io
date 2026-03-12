@@ -316,6 +316,18 @@
     border-radius: 2px;
     border: 1px solid rgba(0,229,160,0.2);
   }
+  .project-img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+    display: block;
+    filter: brightness(0.85) saturate(0.9);
+    transition: filter 0.3s;
+  }
+  .project-card:hover .project-img { filter: brightness(1) saturate(1); }
 
   /* ── FORMATION ── */
   #formation { background: var(--bg); }
@@ -506,7 +518,7 @@
     <li><a href="#skills">Compétences</a></li>
     <li><a href="#projets">Projets</a></li>
     <li><a href="#formation">Formation</a></li>
-    <li><a href="#stage">Stage</a></li>
+
     <li><a href="#langues">Langues</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -617,9 +629,7 @@
     <h2 class="section-title">Projets réalisés</h2>
     <div class="projects-grid">
 
-      <div class="project-card">
-        <div class="project-tag">Systèmes</div>
-        <div class="project-title">Émulateur de CPU</div>
+
         <p class="project-desc">
           Développement d'un émulateur de processeur en C avec gestion mémoire par pointeurs
           et implémentation de tables de hachage pour l'accès optimisé aux instructions.
@@ -633,6 +643,7 @@
       </div>
 
       <div class="project-card">
+        <img class="project-img" src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=600&q=80" alt="Reversi IA" onerror="this.style.display='none'"/>
         <div class="project-tag">IA &amp; Jeux</div>
         <div class="project-title">IA Bots — Reversi</div>
         <p class="project-desc">
@@ -648,6 +659,7 @@
       </div>
 
       <div class="project-card">
+        <img class="project-img" src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?w=600&q=80" alt="Ecosystem simulation" onerror="this.style.display='none'"/>
         <div class="project-tag">Systèmes</div>
         <div class="project-title">Simulation Écosystème Dynamique</div>
         <p class="project-desc">
@@ -663,6 +675,7 @@
       </div>
 
       <div class="project-card">
+        <img class="project-img" src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80" alt="Multi-Agent Paint World" onerror="this.style.display='none'"/>
         <div class="project-tag">IA &amp; Robotique</div>
         <div class="project-title">Multi-Agent Paint World</div>
         <p class="project-desc">
@@ -678,6 +691,7 @@
       </div>
 
       <div class="project-card">
+        <img class="project-img" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&q=80" alt="Hacking ethique" onerror="this.style.display='none'"/>
         <div class="project-tag">Cybersécurité</div>
         <div class="project-title">Auto-formation — Hacking éthique</div>
         <p class="project-desc">
@@ -706,8 +720,11 @@
       <div class="timeline-item">
         <div class="timeline-date">09/2023 — 06/2026</div>
         <div class="timeline-title">Licence Informatique</div>
-        <div class="timeline-school">Sorbonne Université — Paris, France</div>
-        <div class="timeline-note">S5 : 15,13/20 · Rang 23/207</div>
+        <div style="display:flex; align-items:center; gap:0.8rem; margin-bottom:0.2rem;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Logo_of_Sorbonne_University.svg/200px-Logo_of_Sorbonne_University.svg.png"
+               alt="Sorbonne Université" style="height:28px; filter:brightness(0) invert(1); opacity:0.7;"/>
+          <span class="timeline-school" style="margin:0;">Sorbonne Université — Paris, France</span>
+        </div>
       </div>
 
       <div class="timeline-item">
@@ -727,30 +744,12 @@
 </section>
 
 <!-- STAGE -->
-<section id="stage">
-  <div class="container">
-    <div class="section-label">// 05</div>
-    <h2 class="section-title">Stage</h2>
-    <div class="stage-card">
-      <div class="stage-header">
-        <div class="stage-title">Stage d'observation — Cybersécurité &amp; Réseaux</div>
-        <div class="stage-date">Juillet 2025 · 1 mois</div>
-      </div>
-      <div class="stage-company">La Grande Poste d'Alger — Direction des Systèmes d'Information · Alger, Algérie</div>
-      <ul class="stage-list">
-        <li>Observation de l'architecture réseau interne (topologie, équipements, segmentation VLAN)</li>
-        <li>Initiation à la supervision et surveillance du trafic réseau (monitoring, journaux système)</li>
-        <li>Découverte des politiques de sécurité informatique en environnement d'entreprise publique</li>
-        <li>Participation aux réunions SI et sensibilisation aux enjeux de la cybersécurité institutionnelle</li>
-      </ul>
-    </div>
-  </div>
-</section>
+
 
 <!-- LANGUES -->
 <section id="langues">
   <div class="container">
-    <div class="section-label">// 06</div>
+    <div class="section-label">// 05</div>
     <h2 class="section-title">Langues</h2>
     <div class="langs-grid">
       <div class="lang-card">
@@ -776,7 +775,7 @@
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="container">
-    <div class="section-label">// 07</div>
+    <div class="section-label">// 06</div>
     <h2 class="section-title">Expérience</h2>
     <div class="exp-card">
       <div class="exp-header">
@@ -796,7 +795,7 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
-    <div class="section-label">// 08</div>
+    <div class="section-label">// 07</div>
     <h2 class="section-title" style="text-align:center; margin-bottom:1rem;">Disponible dès septembre 2026</h2>
     <p class="contact-tagline">
       Je recherche une alternance en cybersécurité ou réseaux.<br/>
@@ -806,9 +805,7 @@
       <a href="/cdn-cgi/l/email-protection#3a5b545349495b5c5b48080e7a5d575b535614595557" class="contact-item">
         <span class="contact-icon">📧</span> <span class="__cf_email__" data-cfemail="2c4d42455f5f4d4a4d5e1e186c4b414d4540024f4341">[email&#160;protected]</span>
       </a>
-      <a href="tel:0784740585" class="contact-item">
-        <span class="contact-icon">📱</span> 07 84 74 05 85
-      </a>
+      
     </div>
     <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
       <a href="/cdn-cgi/l/email-protection#92f3fcfbe1e1f3f4f3e0a0
