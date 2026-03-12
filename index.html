@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Anis SAFAR | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --bg2: #0f1525;
+    --bg3: #151d35;
+    --accent: #00e5a0;
+    --accent2: #00b4ff;
+    --text: #e8eaf0;
+    --muted: #7a8499;
+    --border: rgba(0,229,160,0.15);
+    --card: rgba(15,21,37,0.8);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior:smooth; }
+
+  body {
+    font-family: 'Sora', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    background: rgba(10,14,26,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.8rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+    text-transform: uppercase;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #accueil {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(0,229,160,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,160,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,229,160,0.08) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .hero-content { position:relative; z-index:1; max-width:700px; }
+
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.3rem 0.9rem;
+    border-radius: 2px;
+    letter-spacing: 0.12em;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  .hero-name {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .hero-name span { color: var(--accent); }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+    font-weight: 300;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 600; }
+
+  .hero-desc {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    font-style: italic;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.8rem;
+    font-size: 0.85rem;
+    font-family: 'Space Mono', monospace;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all 0.2s;
+    letter-spacing: 0.04em;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0a0e1a;
+    font-weight: 700;
+  }
+  .btn-primary:hover { background: #00ffb3; transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 900px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    margin-bottom: 3rem;
+    letter-spacing: -0.02em;
+  }
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--accent);
+    margin-top: 0.6rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--bg2); }
+  .about-text {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.9;
+    max-width: 720px;
+  }
+  .about-text strong { color: var(--text); }
+
+  .stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+    padding: 1.2rem 1.8rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--card);
+    min-width: 130px;
+  }
+  .stat-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--bg); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .skill-icon { font-size: 1.5rem; margin-bottom: 0.8rem; }
+  .skill-cat {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+  .skill-list {
+    list-style: none;
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.9;
+  }
+  .skill-list li::before { content: '› '; color: var(--accent); }
+
+  /* ── PROJECTS ── */
+  #projets { background: var(--bg2); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.8rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .project-card:hover { border-color: rgba(0,229,160,0.4); transform: translateY(-4px); }
+  .project-card:hover::before { opacity: 1; }
+
+  .project-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    color: var(--accent2);
+    border: 1px solid rgba(0,180,255,0.3);
+    padding: 0.15rem 0.6rem;
+    border-radius: 2px;
+    margin-bottom: 0.8rem;
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .project-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+    color: var(--text);
+  }
+  .project-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+  }
+  .project-techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tech-badge {
+    font-size: 0.72rem;
+    font-family: 'Space Mono', monospace;
+    background: rgba(0,229,160,0.08);
+    color: var(--accent);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    border: 1px solid rgba(0,229,160,0.2);
+  }
+
+  /* ── FORMATION ── */
+  #formation { background: var(--bg); }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.4rem; top: 0.4rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 8px var(--accent);
+  }
+  .timeline-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+  }
+  .timeline-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+  .timeline-school {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+  .timeline-note {
+    font-size: 0.82rem;
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* ── STAGE ── */
+  #stage { background: var(--bg2); }
+  .stage-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2rem;
+    border-left: 3px solid var(--accent);
+  }
+  .stage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .stage-title { font-size: 1rem; font-weight: 700; }
+  .stage-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+  }
+  .stage-company { font-size: 0.88rem; color: var(--muted); margin-bottom: 1rem; }
+  .stage-list {
+    list-style: none;
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 2;
+  }
+  .stage-list li::before { content: '▹ '; color: var(--accent); }
+
+  /* ── LANGUES ── */
+  #langues { background: var(--bg); }
+  .langs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+  .lang-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .lang-card:hover { border-color: var(--accent); }
+  .lang-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .lang-level { font-size: 0.78rem; color: var(--accent); font-family: 'Space Mono', monospace; }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--bg2); }
+  .exp-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2rem;
+  }
+  .exp-header { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
+  .exp-title { font-size: 1rem; font-weight: 700; }
+  .exp-date { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--accent); }
+  .exp-company { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.8rem; }
+  .exp-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.8; }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--bg);
+    text-align: center;
+  }
+  .contact-tagline {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-item:hover { color: var(--accent); }
+  .contact-icon { font-size: 1.1rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(24px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+  .hero-content > * {
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:600px) {
+    .nav-links { display: none; }
+    .stats { gap: 1rem; }
+    .hero-btns { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#accueil" class="nav-logo">AS/</a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#formation">Formation</a></li>
+    <li><a href="#stage">Stage</a></li>
+    <li><a href="#langues">Langues</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="accueil">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Cybersécurité · Réseaux · Systèmes</div>
+    <h1 class="hero-name">Anis <span>SAFAR</span></h1>
+    <p class="hero-sub">Étudiant en <strong>L3 Informatique — Sorbonne Université</strong></p>
+    <p class="hero-desc">Alternance · Cybersécurité & Réseaux · Sept. 2026 · Île-de-France</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-primary">Me contacter</a>
+      <a href="#projets" class="btn btn-outline">Voir mes projets</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">// 01</div>
+    <h2 class="section-title">À propos de moi</h2>
+    <p class="about-text">
+      Passionné par la <strong>cybersécurité</strong> et les <strong>systèmes</strong> depuis le lycée,
+      j'ai fait le choix de venir en France pour construire mon parcours à la <strong>Sorbonne</strong>
+      et acquérir les bases solides nécessaires pour me spécialiser dans la sécurité offensive et défensive.
+      Je m'intéresse particulièrement au <strong>pentest</strong>, à <strong>l'audit de sécurité</strong>
+      et à la <strong>réponse à incident</strong>.
+      <br/><br/>
+      Mes projets universitaires m'ont permis de travailler en <strong>C</strong>, <strong>Python</strong>
+      et <strong>Bash</strong>, dans des environnements <strong>Linux</strong>, tout en renforçant ma
+      rigueur et mon autonomie. En parallèle, je m'entraîne sur <strong>TryHackMe</strong> pour progresser
+      en pratique : Nmap, énumération, hacking éthique en environnement contrôlé.
+    </p>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">// 02</div>
+    <h2 class="section-title">Compétences techniques</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🛡️</div>
+        <div class="skill-cat">Réseaux &amp; Sécurité</div>
+        <ul class="skill-list">
+          <li>TCP/IP, UDP, DNS, DHCP, NAT</li>
+          <li>Nmap, TryHackMe</li>
+          <li>Cryptologie</li>
+          <li>Architecture client-serveur</li>
+          <li>Hacking éthique</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">💻</div>
+        <div class="skill-cat">Langages</div>
+        <ul class="skill-list">
+          <li>Python (avancé)</li>
+          <li>C (système, mémoire)</li>
+          <li>Java, OCaml</li>
+          <li>PHP, JavaScript, HTML/CSS</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🖥️</div>
+        <div class="skill-cat">Systèmes</div>
+        <ul class="skill-list">
+          <li>Linux (Kali, Debian)</li>
+          <li>Administration Bash/Shell</li>
+          <li>Gestion mémoire / Valgrind</li>
+          <li>Architecture système</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <div class="skill-cat">Data &amp; IA</div>
+        <ul class="skill-list">
+          <li>Machine Learning</li>
+          <li>Statistiques appliquées</li>
+          <li>NumPy, Pandas, Scikit-learn</li>
+          <li>Algorithmes génétiques</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🛠️</div>
+        <div class="skill-cat">Outils</div>
+        <ul class="skill-list">
+          <li>Git, GitHub</li>
+          <li>React, SQL</li>
+          <li>Anaconda, Eclipse IDE</li>
+          <li>Valgrind, Makefile</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section id="projets">
+  <div class="container">
+    <div class="section-label">// 03</div>
+    <h2 class="section-title">Projets réalisés</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-tag">Systèmes</div>
+        <div class="project-title">Émulateur de CPU</div>
+        <p class="project-desc">
+          Développement d'un émulateur de processeur en C avec gestion mémoire par pointeurs
+          et implémentation de tables de hachage pour l'accès optimisé aux instructions.
+          Focus sur l'architecture système et la gestion des allocations dynamiques.
+        </p>
+        <div class="project-techs">
+          <span class="tech-badge">C</span>
+          <span class="tech-badge">Architecture</span>
+          <span class="tech-badge">Mémoire</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">IA &amp; Jeux</div>
+        <div class="project-title">IA Bots — Reversi</div>
+        <p class="project-desc">
+          Développement de bots intelligents pour le jeu Reversi via simulation Monte-Carlo :
+          évaluation de milliers de coups pour optimiser la prise de décision
+          en environnement compétitif et incertain.
+        </p>
+        <div class="project-techs">
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">Monte-Carlo</span>
+          <span class="tech-badge">Algorithmique IA</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Systèmes</div>
+        <div class="project-title">Simulation Écosystème Dynamique</div>
+        <p class="project-desc">
+          Modélisation proies/prédateurs avec comportements complexes (déplacement, reproduction,
+          prédation). Implémentation de listes chaînées, tableaux dynamiques et files de priorité.
+          Gestion mémoire rigoureuse validée par Valgrind.
+        </p>
+        <div class="project-techs">
+          <span class="tech-badge">C</span>
+          <span class="tech-badge">Structures de données</span>
+          <span class="tech-badge">Valgrind</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">IA &amp; Robotique</div>
+        <div class="project-title">Multi-Agent Paint World</div>
+        <p class="project-desc">
+          Simulation multi-agents autonomes 2D avec architecture de comportement modulaire
+          (évitement, exploration). Optimisation des comportements par algorithme génétique :
+          sélection, mutation et croisement.
+        </p>
+        <div class="project-techs">
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">Algo génétique</span>
+          <span class="tech-badge">Robotique autonome</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Cybersécurité</div>
+        <div class="project-title">Auto-formation — Hacking éthique</div>
+        <p class="project-desc">
+          Entraînement sur TryHackMe : reconnaissance réseau avec Nmap, hacking éthique,
+          énumération et exploitation en environnement contrôlé. Pratique des fondamentaux
+          offensifs (bruteforce, scanning, exploitation).
+        </p>
+        <div class="project-techs">
+          <span class="tech-badge">TryHackMe</span>
+          <span class="tech-badge">Nmap</span>
+          <span class="tech-badge">Linux/Kali</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FORMATION -->
+<section id="formation">
+  <div class="container">
+    <div class="section-label">// 04</div>
+    <h2 class="section-title">Formation</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">09/2023 — 06/2026</div>
+        <div class="timeline-title">Licence Informatique</div>
+        <div class="timeline-school">Sorbonne Université — Paris, France</div>
+        <div class="timeline-note">S5 : 15,13/20 · Rang 23/207</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">09/2022 — 06/2023</div>
+        <div class="timeline-title">Classe Préparatoire 1ère Année</div>
+        <div class="timeline-school">École Nationale Polytechnique (ENPC) — Constantine, Algérie</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">09/2021 — 06/2022</div>
+        <div class="timeline-title">Baccalauréat — Spécialité Mathématiques</div>
+        <div class="timeline-school">Bac Mathelem — Tizi-Ouzou, Algérie</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STAGE -->
+<section id="stage">
+  <div class="container">
+    <div class="section-label">// 05</div>
+    <h2 class="section-title">Stage</h2>
+    <div class="stage-card">
+      <div class="stage-header">
+        <div class="stage-title">Stage d'observation — Cybersécurité &amp; Réseaux</div>
+        <div class="stage-date">Juillet 2025 · 1 mois</div>
+      </div>
+      <div class="stage-company">La Grande Poste d'Alger — Direction des Systèmes d'Information · Alger, Algérie</div>
+      <ul class="stage-list">
+        <li>Observation de l'architecture réseau interne (topologie, équipements, segmentation VLAN)</li>
+        <li>Initiation à la supervision et surveillance du trafic réseau (monitoring, journaux système)</li>
+        <li>Découverte des politiques de sécurité informatique en environnement d'entreprise publique</li>
+        <li>Participation aux réunions SI et sensibilisation aux enjeux de la cybersécurité institutionnelle</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUES -->
+<section id="langues">
+  <div class="container">
+    <div class="section-label">// 06</div>
+    <h2 class="section-title">Langues</h2>
+    <div class="langs-grid">
+      <div class="lang-card">
+        <div class="lang-name">Français</div>
+        <div class="lang-level">Bilingue</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">Anglais</div>
+        <div class="lang-level">C1 — Avancé</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">Arabe</div>
+        <div class="lang-level">C2 — Expérimenté</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">Kabyle</div>
+        <div class="lang-level">Langue maternelle</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">// 07</div>
+    <h2 class="section-title">Expérience</h2>
+    <div class="exp-card">
+      <div class="exp-header">
+        <div class="exp-title">Chef de Rang / Barista</div>
+        <div class="exp-date">01/2023 — Actuel</div>
+      </div>
+      <div class="exp-company">Bistro Gisèle — Paris, France</div>
+      <div class="exp-desc">
+        3 ans en parallèle des études : gestion du service, encaissement et travail en équipe
+        sous forte affluence. Cette expérience a renforcé mon autonomie, ma rigueur
+        et ma capacité à gérer plusieurs priorités simultanément.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">// 08</div>
+    <h2 class="section-title" style="text-align:center; margin-bottom:1rem;">Disponible dès septembre 2026</h2>
+    <p class="contact-tagline">
+      Je recherche une alternance en cybersécurité ou réseaux.<br/>
+      N'hésitez pas à me contacter !
+    </p>
+    <div class="contact-links">
+      <a href="/cdn-cgi/l/email-protection#3a5b545349495b5c5b48080e7a5d575b535614595557" class="contact-item">
+        <span class="contact-icon">📧</span> <span class="__cf_email__" data-cfemail="2c4d42455f5f4d4a4d5e1e186c4b414d4540024f4341">[email&#160;protected]</span>
+      </a>
+      <a href="tel:0784740585" class="contact-item">
+        <span class="contact-icon">📱</span> 07 84 74 05 85
+      </a>
+    </div>
+    <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+      <a href="/cdn-cgi/l/email-protection#92f3fcfbe1e1f3f4f3e0a0
